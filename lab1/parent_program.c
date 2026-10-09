@@ -18,7 +18,6 @@ int main(int argc, char** argv) {
         filename[name - 1] = '\0';
         name--;
     }
-  
     int pipe1[2];
     if (pipe(pipe1) == -1) {
         const char msg[] = "Error: failed to create pipe\n";
@@ -43,12 +42,12 @@ int main(int argc, char** argv) {
 	} break;
 
     case 0: {
-        close(pipe1[1]);
-        close(pipe2[0]);
-
+        close(pipe1[1]); // закрываем ребенка на запись
+        close(pipe2[0]); // родителя на чтение
+        // замена стандартного ввода на трубу
         dup2(pipe1[0], STDIN_FILENO); 
         close(pipe1[0]);
-
+        // замена вывода на трубу
         dup2(pipe2[1], STDOUT_FILENO);
         close(pipe2[1]);
 
