@@ -192,7 +192,7 @@ void timSort(int* arr, int size) {
 	}
 }
 
-static void *work(void *_args)
+void *work(void *_args)
 {
 	ThreadArgs *args = (ThreadArgs *)_args;
 
@@ -209,7 +209,7 @@ static void *work(void *_args)
 }
 
 int main(int argc, char **argv) {
-    // ./threads_lab -s <arrSize> -t <n_threads> -a <y/n>
+    // ./threads_lab -s <arrSize> -t <n_threads> -a <1/0>
 
     int size = 0;
     int n_threads = 0;
